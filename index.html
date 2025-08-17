@@ -1,0 +1,671 @@
+<!DOCTYPE html>
+<html lang="uz""rus">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>Web Sayt</title>
+  <meta name="description" content="Zamonaviy, responsiv sayt — portfolio, xizmatlar va aloqa. Light/Dark rejimi bilan." />
+  <link rel="icon" href="data:," />
+
+  <!-- Google font: Poppins -->
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link
+    href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;500;700&display=swap"
+    rel="stylesheet"
+  />
+
+  <style>
+    :root {
+      --bg: #f7f9fc;
+      --card: #ffffff;
+      --text: #1f2d3a;
+      --muted: #6b7a8c;
+      --radius: 14px;
+      --shadow: 0 20px 40px -10px rgba(31, 45, 58, 0.08);
+      --accent: #16a34a; /* yashil rang */
+      --transition: 0.35s cubic-bezier(0.4, 0.2, 0.2, 1);
+      font-family: "Poppins", system-ui, -apple-system, BlinkMacSystemFont, sans-serif;
+    }
+    [data-theme="dark"] {
+      --bg: #0f111a;
+      --card: #1f2030;
+      --text: #f0f3fb;
+      --muted: #8a94b0;
+      --accent: #22c55e; /* ozgina yorqinroq yashil */
+      --shadow: 0 30px 60px -10px rgba(0, 0, 0, 0.6);
+    }
+
+    * {
+      box-sizing: border-box;
+    }
+    body {
+      margin: 0;
+      background: var(--bg);
+      color: var(--text);
+      line-height: 1.55;
+      -webkit-font-smoothing: antialiased;
+      transition: background var(--transition), color var(--transition);
+      font-family: inherit;
+    }
+    a {
+      color: inherit;
+      text-decoration: none;
+      position: relative;
+    }
+    h1,
+    h2 {
+      margin: 0;
+      font-weight: 700;
+      line-height: 1.1;
+    }
+    p {
+      margin: 0 0 1rem;
+    }
+    .container {
+      max-width: 1120px;
+      margin: 0 auto;
+      padding: 0 1rem;
+    }
+    .flex {
+      display: flex;
+      gap: 1rem;
+    }
+    .center {
+      display: flex;
+      align-items: center;
+    }
+    .button {
+      display: inline-flex;
+      align-items: center;
+      gap: 0.5rem;
+      padding: 0.75rem 1.25rem;
+      background: var(--accent);
+      color: #fff;
+      border: none;
+      border-radius: 10px;
+      cursor: pointer;
+      font-weight: 600;
+      font-size: 0.9rem;
+      transition: filter var(--transition);
+    }
+    .button:hover {
+      filter: brightness(1.05);
+    }
+    .card {
+      background: var(--card);
+      border-radius: var(--radius);
+      padding: 1.5rem;
+      box-shadow: var(--shadow);
+      position: relative;
+      overflow: hidden;
+      transition: transform var(--transition), box-shadow var(--transition);
+    }
+    .card:hover {
+      transform: translateY(-4px);
+    }
+    .badge {
+      display: inline-block;
+      background: rgba(22, 163, 74, 0.1);
+      color: var(--accent);
+      padding: 0.35rem 0.75rem;
+      border-radius: 999px;
+      font-size: 0.6rem;
+      font-weight: 600;
+      text-transform: uppercase;
+      letter-spacing: 1px;
+    }
+    header {
+      padding: 1.5rem 0;
+      position: sticky;
+      top: 0;
+      z-index: 50;
+      background: rgba(255, 255, 255, 0.85);
+      backdrop-filter: blur(12px);
+      border-bottom: 1px solid rgba(0, 0, 0, 0.03);
+      transition: background var(--transition);
+    }
+    [data-theme="dark"] header {
+      background: rgba(18, 19, 35, 0.85);
+    }
+    .nav {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      gap: 1rem;
+    }
+    .nav-links {
+      display: flex;
+      gap: 1rem;
+      list-style: none;
+      padding: 0;
+      margin: 0;
+    }
+    .nav-links li a {
+      padding: 0.5rem 0.75rem;
+      border-radius: 8px;
+      font-size: 0.9rem;
+      font-weight: 500;
+      position: relative;
+    }
+    .nav-links li a:hover {
+      background: rgba(22, 163, 74, 0.08);
+    }
+    .toggle-btn {
+      background: none;
+      border: 2px solid var(--accent);
+      padding: 0.5rem;
+      border-radius: 50%;
+      cursor: pointer;
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      width: 42px;
+      height: 42px;
+      font-size: 1.2rem;
+      user-select: none;
+    }
+    .hero {
+      padding: 4rem 0 2rem;
+      display: flex;
+      flex-wrap: wrap;
+      gap: 2rem;
+      align-items: center;
+    }
+    .hero-text {
+      flex: 1 1 400px;
+      min-width: 280px;
+    }
+    .hero-illustration {
+      flex: 1 1 360px;
+      min-width: 260px;
+      position: relative;
+    }
+    .feature-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+      gap: 1.5rem;
+    }
+    .section {
+      padding: 3rem 0;
+    }
+    .badge-small {
+      background: var(--accent);
+      color: #fff;
+      padding: 0.25rem 0.65rem;
+      border-radius: 6px;
+      font-size: 0.55rem;
+      display: inline-block;
+      margin-bottom: 0.5rem;
+    }
+    .card-portfolio {
+      position: relative;
+      overflow: hidden;
+      border-radius: 12px;
+    }
+    .card-portfolio img {
+      width: 100%;
+      display: block;
+      border-radius: 12px;
+      transition: transform 0.4s ease;
+    }
+    .card-portfolio:hover img {
+      transform: scale(1.05);
+    }
+    .overlay {
+      position: absolute;
+      inset: 0;
+      background: linear-gradient(to top right, rgba(0, 0, 0, 0.5), rgba(22, 163, 74, 0.3));
+      mix-blend-mode: overlay;
+      pointer-events: none;
+      border-radius: 12px;
+    }
+
+    /* mobile menu */
+    .mobile-toggle {
+      display: none;
+      background: none;
+      border: none;
+      font-size: 1.5rem;
+      cursor: pointer;
+    }
+    .nav-right {
+      display: flex;
+      align-items: center;
+      gap: 1rem;
+    }
+
+    @media (max-width: 980px) {
+      .nav-links {
+        display: none;
+      }
+      .mobile-toggle {
+        display: inline-flex;
+      }
+      .mobile-menu {
+        position: fixed;
+        inset: 0;
+        background: var(--card);
+        padding: 2rem 1.5rem;
+        z-index: 60;
+        display: flex;
+        flex-direction: column;
+        gap: 1.25rem;
+        transform: translateY(-100%);
+        transition: transform var(--transition);
+        overflow-y: auto;
+      }
+      .mobile-menu.open {
+        transform: translateY(0);
+      }
+      .mobile-menu a {
+        font-size: 1.1rem;
+        font-weight: 600;
+      }
+    }
+
+    .form-group {
+      display: flex;
+      flex-direction: column;
+      gap: 0.35rem;
+    }
+    input,
+    textarea {
+      padding: 0.85rem 1rem;
+      border-radius: 10px;
+      border: 1px solid rgba(0, 0, 0, 0.08);
+      font-size: 0.95rem;
+      resize: vertical;
+      background: rgba(255, 255, 255, 0.9);
+      transition: box-shadow var(--transition), border var(--transition);
+    }
+    [data-theme="dark"] input,
+    [data-theme="dark"] textarea {
+      background: rgba(255, 255, 255, 0.05);
+      border: 1px solid rgba(255, 255, 255, 0.08);
+      color: inherit;
+    }
+    textarea {
+      min-height: 140px;
+    }
+    .form-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+      gap: 1rem;
+    }
+    .footer {
+      padding: 2.5rem 0;
+      font-size: 0.85rem;
+      border-top: 1px solid rgba(0, 0, 0, 0.05);
+      display: flex;
+      flex-wrap: wrap;
+      gap: 2rem;
+      justify-content: space-between;
+    }
+    .socials {
+      display: flex;
+      gap: 1rem;
+      list-style: none;
+      padding: 0;
+      margin: 0;
+    }
+    .credit {
+      margin-top: 1rem;
+      color: var(--muted);
+    }
+  </style>
+</head>
+<body>
+
+  <header aria-label="Sayt bosh qismi">
+    <div class="container">
+      <div class="nav">
+        <div class="logo">
+          <a href="#" aria-label="Bosh sahifa" style="font-weight:700; font-size:1.25rem; display:inline-block;">
+            <span
+              style="background:linear-gradient(90deg, var(--accent), #a7f3d0); -webkit-background-clip:text; color:transparent;"
+              >Web Loyiha Xizmati</span
+            >
+          </a>
+        </div>
+        <nav aria-label="Asosiy menyu">
+          <ul class="nav-links" role="menubar">
+            <li><a href="home" role="menuitem"></a></li>
+            <li><a href="#xizmatlar" role="menuitem">Xizmatlar</a></li>
+            <li><a href="#portfolio" role="menuitem">Portfolio</a></li>
+            <li><a href="#aloqa" role="menuitem">Aloqa</a></li>
+            <li><a href="#blog" role="menuitem">Blog</a></li> <!-- Yangi bo'lim -->
+          </ul>
+        </nav>
+        <div class="nav-right">
+          <button
+            class="toggle-btn"
+            aria-label="Light / Dark rejimni o‘zgartirish"
+            id="themeToggle"
+            type="button"
+          >
+            🌙
+          </button>
+          <button
+            class="mobile-toggle"
+            aria-label="Menyu ochish"
+            id="mobileBtn"
+            type="button"
+          >
+            ☰
+          </button>
+        </div>
+      </div>
+    </div>
+    <div class="mobile-menu" id="mobileMenu" aria-label="Mobil menyu">
+      <a href="#home" onclick="closeMenu()">Bosh Sahifa</a>
+      <a href="#xizmatlar" onclick="closeMenu()">Xizmatlar</a>
+      <a href="#portfolio" onclick="closeMenu()">Portfolio</a>
+      <a href="#aloqa" onclick="closeMenu()">Aloqa</a>
+      <a href="#blog" onclick="closeMenu()">Blog</a> <!-- Yangi bo'lim -->
+      <div style="margin-top: 1rem;">
+        <button class="button" id="mobileThemeToggle" type="button">Qorong‘i rejim</button>
+      </div>
+    </div>
+  </header>
+
+  <main>
+    <!-- Hero -->
+    <section class="hero" id="home">
+      <div class="container flex" style="gap: 2rem;">
+        <div class="hero-text">
+          <div class="badge-small">Yaxshi dizayn</div>
+          <h1 style="font-size: 2.75rem; margin-top: 0.5rem;">
+            Sizning onlayn ishingiz uchun zamonaviy sayt
+          </h1>
+          <p style="font-size: 1rem; margin-top: 0.75rem; max-width: 600px;">
+            Portfolio, biznes, yoki shaxsiy sahifa — bu shablon bilan boshlang. Light/Dark rejim,
+            responsivlik, va soddaligi bilan tez ishga tushiring.
+          </p>
+          <div
+            style="margin-top: 1rem; display: flex; gap: 1rem; flex-wrap: wrap;"
+          >
+            <a href="#xizmatlar" class="button">Xizmatlar</a>
+            <a
+              href="#aloqa"
+              class="button"
+              style="background: transparent; color: var(--accent); border: 2px solid var(--accent);"
+              >Bog‘lanish</a
+            >
+          </div>
+        </div>
+        <div class="hero-illustration">
+          <!-- oddiy SVG illüstratsiya yoki rasm joylashtirish mumkin -->
+          <div
+            class="card"
+            style="padding: 1rem; display: flex; flex-direction: column; gap: 1rem;"
+          >
+            <div style="font-weight: 600;">Sayt misoli</div>
+            <div style="font-size: 0.9rem; color: var(--muted);">
+              Bu yerga o‘zingizning tasvirlaringiz, skrinshotlar yoki qisqacha tavsif
+              kiritilgan bo‘lishi mumkin.
+            </div>
+            <div style="margin-top: auto;">
+              <div
+                style="display: flex; gap: 0.5rem; flex-wrap: wrap;"
+              >
+                <div
+                  style="
+                    flex: 1;
+                    min-width: 100px;
+                    background: rgba(22, 163, 74, 0.05);
+                    padding: 0.75rem;
+                    border-radius: 8px;
+                    font-size: 0.75rem;
+                  "
+                >
+                  Tez
+                </div>
+                <div
+                  style="
+                    flex: 1;
+                    min-width: 100px;
+                    background: rgba(16, 185, 129, 0.08);
+                    padding: 0.75rem;
+                    border-radius: 8px;
+                    font-size: 0.75rem;
+                  "
+                >
+                  Responsiv
+                </div>
+                <div
+                  style="
+                    flex: 1;
+                    min-width: 100px;
+                    background: rgba(74, 222, 128, 0.08);
+                    padding: 0.75rem;
+                    border-radius: 8px;
+                    font-size: 0.75rem;
+                  "
+                >
+                  Oddiy
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- Xizmatlar -->
+    <section class="section" id="xizmatlar">
+      <div class="container">
+        <div style="text-align: center; margin-bottom: 2rem;">
+          <div class="badge">Nimalarni taklif etamiz</div>
+          <h2 style="font-size: 2rem; margin-top: 0.5rem;">
+            Sizning ehtiyojingizga mos xizmatlar
+          </h2>
+          <p style="max-width: 700px; margin: 0 auto; color: var(--muted);">
+            Biz quyidagilarni qilamiz: veb-sayt ishlab chiqish, dizayn,
+            responsiv optimizatsiya, SEO boshlang‘ich, va qo‘llab-quvvatlash.
+          </p>
+        </div>
+        <div class="feature-grid">
+          <div class="card">
+            <div style="font-weight: 600; margin-bottom: 0.5rem;">
+              Portfolio saytlari
+            </div>
+            <p>Shaxsiy yoki ijodiy ishlaringizni namoyish qiladigan sayt.</p>
+          </div>
+          <div class="card">
+            <div style="font-weight: 600; margin-bottom: 0.5rem;">
+              Biznes sahifalar
+            </div>
+            <p>Mahsulot, xizmat yoki kompaniyangiz uchun professional sayt.</p>
+          </div>
+          <div class="card">
+            <div style="font-weight: 600; margin-bottom: 0.5rem;">
+              Kontakt va forma
+            </div>
+            <p>Foydalanuvchilar sizga tezda yozishi uchun aloqa formasi.</p>
+          </div>
+          <div class="card">
+            <div style="font-weight: 600; margin-bottom: 0.5rem;">
+              Light / Dark rejim
+            </div>
+            <p>Qulaylik uchun yorug‘ va qorong‘i ko‘rinish o‘rtasida o‘tish.</p>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- Portfolio -->
+    <section class="section" id="portfolio" style="background: rgba(22, 163, 74, 0.05);">
+      <div class="container">
+        <div style="text-align: center; margin-bottom: 2rem;">
+          <div class="badge">Portfolio</div>
+          <h2 style="font-size: 2rem; margin-top: 0.5rem;">Oxirgi loyihalar</h2>
+          <p style="max-width: 700px; margin: 0 auto; color: var(--muted);">
+            Quyida so‘nggi ishlagan loyihalarimiz namunalari keltirilgan.
+          </p>
+        </div>
+        <div class="feature-grid">
+          <div class="card-portfolio">
+            <img src="https://source.unsplash.com/360x240/?website" alt="Loyiha 1" />
+            <div class="overlay"></div>
+          </div>
+          <div class="card-portfolio">
+            <img src="https://source.unsplash.com/360x240/?app" alt="Loyiha 2" />
+            <div class="overlay"></div>
+          </div>
+          <div class="card-portfolio">
+            <img src="https://source.unsplash.com/360x240/?design" alt="Loyiha 3" />
+            <div class="overlay"></div>
+          </div>
+          <div class="card-portfolio">
+            <img src="https://source.unsplash.com/360x240/?coding" alt="Loyiha 4" />
+            <div class="overlay"></div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- Blog (Yangi qo'shilgan) -->
+    <section class="section" id="blog" style="background: rgba(22, 163, 74, 0.05);">
+      <div class="container">
+        <div style="text-align: center; margin-bottom: 2rem;">
+          <div class="badge">Yangiliklar</div>
+          <h2 style="font-size: 2rem; margin-top: 0.5rem;">So'nggi maqolalar</h2>
+          <p style="max-width: 700px; margin: 0 auto; color: var(--muted);">
+            Bizning blogimizdan so'nggi maqolalar va yangiliklarni o‘qing.
+          </p>
+        </div>
+        <div class="feature-grid">
+          <div class="card">
+            <div style="font-weight: 600; margin-bottom: 0.5rem;">Web dizayn trendlar 2025</div>
+            <p>Eng yangi web dizayn uslublari va trendlarini bilib oling.</p>
+          </div>
+          <div class="card">
+            <div style="font-weight: 600; margin-bottom: 0.5rem;">SEO asoslari</div>
+            <p>Saytingizni qidiruv tizimlarida yuqori o‘ringa chiqarish bo‘yicha maslahatlar.</p>
+          </div>
+          <div class="card">
+            <div style="font-weight: 600; margin-bottom: 0.5rem;">Responsive dizayn</div>
+            <p>Har qanday qurilmada mukammal ishlaydigan sayt yaratish.</p>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- Aloqa -->
+    <section class="section" id="aloqa">
+      <div class="container">
+        <div style="text-align: center; margin-bottom: 2rem;">
+          <div class="badge">Bog‘lanish</div>
+          <h2 style="font-size: 2rem; margin-top: 0.5rem;">Biz bilan bog‘laning</h2>
+          <p style="max-width: 700px; margin: 0 auto; color: var(--muted);">
+            Savollaringiz bo‘lsa, quyidagi shakl orqali murojaat qiling.
+          </p>
+        </div>
+        <form
+          style="max-width: 600px; margin: 0 auto; display: grid; gap: 1rem;"
+          aria-label="Aloqa formasi"
+        >
+          <div class="form-group">
+            <label for="name">Ismingiz</label>
+            <input type="text" id="name" name="name" placeholder="Ismingiz" required />
+          </div>
+          <div class="form-group">
+            <label for="email">Email manzilingiz</label>
+            <input
+              type="email"
+              id="email"
+              name="email"
+              placeholder="Email manzilingiz"
+              required
+            />
+          </div>
+          <div class="form-group">
+            <label for="message">Xabar</label>
+            <textarea
+              id="message"
+              name="message"
+              placeholder="Xabar matni"
+              required
+            ></textarea>
+          </div>
+          <button type="submit" class="button">Yuborish</button>
+        </form>
+      </div>
+    </section>
+  </main>
+
+  <footer class="footer">
+    <div class="container flex" style="justify-content: space-between; flex-wrap: wrap;">
+      <div>&copy; 2025 Web Loyiha Xizmati. Barcha huquqlar himoyalangan.</div>
+      <ul class="socials" aria-label="Ijtimoiy tarmoqlar">
+        <li><a href="#" aria-label="Facebook" target="_blank" rel="noopener">Facebook</a></li>
+        <li><a href="#" aria-label="Twitter" target="_blank" rel="noopener">Twitter</a></li>
+        <li><a href="#" aria-label="Instagram" target="_blank" rel="noopener">Instagram</a></li>
+      </ul>
+    </div>
+  </footer>
+
+  <script>
+    // Light/Dark rejim toggle
+    const themeToggle = document.getElementById("themeToggle");
+    const mobileThemeToggle = document.getElementById("mobileThemeToggle");
+
+    function setTheme(theme) {
+      if (theme === "dark") {
+        document.documentElement.setAttribute("data-theme", "dark");
+        themeToggle.textContent = "☀️";
+        mobileThemeToggle.textContent = "Yorug‘ rejim";
+      } else {
+        document.documentElement.setAttribute("data-theme", "light");
+        themeToggle.textContent = "🌙";
+        mobileThemeToggle.textContent = "Qorong‘i rejim";
+      }
+      localStorage.setItem("theme", theme);
+    }
+
+    function toggleTheme() {
+      if (document.documentElement.getAttribute("data-theme") === "dark") {
+        setTheme("light");
+      } else {
+        setTheme("dark");
+      }
+    }
+
+    themeToggle.addEventListener("click", toggleTheme);
+    mobileThemeToggle.addEventListener("click", () => {
+      toggleTheme();
+      closeMenu();
+    });
+
+    // Sahifa yuklanganda saqlangan rejimni o'rnatish
+    const savedTheme = localStorage.getItem("theme") || "light";
+    setTheme(savedTheme);
+
+    // Mobil menyu toggle va scroll bloklash
+    const mobileBtn = document.getElementById("mobileBtn");
+    const mobileMenu = document.getElementById("mobileMenu");
+
+    mobileBtn.addEventListener("click", () => {
+      mobileMenu.classList.toggle("open");
+      if (mobileMenu.classList.contains("open")) {
+        document.body.style.overflow = "hidden";
+      } else {
+        document.body.style.overflow = "";
+      }
+    });
+
+    function closeMenu() {
+      mobileMenu.classList.remove("open");
+      document.body.style.overflow = "";
+    }
+
+    // Formani yuborishda oddiy validatsiya
+    document.querySelector("form").addEventListener("submit", (e) => {
+      e.preventDefault();
+      alert("Xabaringiz qabul qilindi. Tez orada javob beramiz!");
+      e.target.reset();
+    });
+  </script>
+</body>
+</html>
