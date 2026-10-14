@@ -1,0 +1,438 @@
+<!DOCTYPE html>
+<html lang="uz" data-theme="dark">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>WebCraft Studio — Zamonaviy veb-saytlar yaratamiz</title>
+<meta name="description" content="WebCraft Studio — biznesingiz uchun zamonaviy, tez va professional veb-saytlar yaratamiz.">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&family=Playfair+Display:wght@600;700;800&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
+<style>
+:root{--bg:#0a0a0a;--bg-alt:#111;--bg-card:#161616;--bg-hover:#1c1c1c;--text:#f5f5f5;--text-muted:#a0a0a0;--text-dim:#6b6b6b;--border:#262626;--border-hover:#3a3a3a;--gold:#d4af37;--gold-light:#e8c860;--gold-dark:#b8942a;--gold-glow:rgba(212,175,55,.15);--section-py:100px;--container:1200px;--radius:16px;--radius-sm:10px;--t:.3s cubic-bezier(.4,0,.2,1);--t-slow:.6s cubic-bezier(.4,0,.2,1);--font-body:'Inter',system-ui,sans-serif;--font-display:'Playfair Display',Georgia,serif}
+[data-theme="light"]{--bg:#fff;--bg-alt:#f8f8f8;--bg-card:#fff;--bg-hover:#f0f0f0;--text:#0a0a0a;--text-muted:#555;--text-dim:#888;--border:#e5e5e5;--border-hover:#d0d0d0;--gold:#b8942a;--gold-light:#d4af37;--gold-dark:#8a6f1f;--gold-glow:rgba(184,148,42,.12)}
+*,*::before,*::after{margin:0;padding:0;box-sizing:border-box}
+html{scroll-behavior:smooth;scroll-padding-top:90px}
+body{font-family:var(--font-body);background:var(--bg);color:var(--text);line-height:1.7;overflow-x:hidden;transition:background var(--t),color var(--t);-webkit-font-smoothing:antialiased}
+a{color:inherit;text-decoration:none}
+img{max-width:100%;display:block}
+button{font-family:inherit;cursor:pointer;border:none;background:none;color:inherit}
+ul{list-style:none}
+.loader{position:fixed;inset:0;background:var(--bg);display:flex;align-items:center;justify-content:center;z-index:9999;transition:opacity .6s,visibility .6s}
+.loader.hidden{opacity:0;visibility:hidden}
+.loader-ring{width:50px;height:50px;border:3px solid var(--border);border-top-color:var(--gold);border-radius:50%;animation:spin .8s linear infinite}
+@keyframes spin{to{transform:rotate(360deg)}}
+.container{max-width:var(--container);margin:0 auto;padding:0 24px}
+.navbar{position:fixed;top:0;left:0;right:0;z-index:1000;padding:20px 0;background:transparent;transition:all var(--t)}
+.navbar.scrolled{padding:12px 0;background:rgba(10,10,10,.85);backdrop-filter:blur(20px);-webkit-backdrop-filter:blur(20px);border-bottom:1px solid var(--border)}
+[data-theme="light"] .navbar.scrolled{background:rgba(255,255,255,.85)}
+.nav-container{display:flex;align-items:center;justify-content:space-between;gap:24px}
+.logo{display:flex;align-items:center;gap:10px;font-weight:700;font-size:1.3rem;letter-spacing:-.02em;transition:opacity var(--t)}
+.logo:hover{opacity:.8}
+.logo-icon{width:38px;height:38px;display:grid;place-items:center;background:linear-gradient(135deg,var(--gold),var(--gold-dark));color:#0a0a0a;border-radius:10px;font-size:1rem;box-shadow:0 4px 20px var(--gold-glow)}
+.logo-text em{color:var(--gold);font-style:normal}
+.nav-menu{display:flex;align-items:center;gap:8px}
+.nav-link{padding:8px 16px;font-size:.92rem;font-weight:500;color:var(--text-muted);border-radius:8px;transition:all var(--t)}
+.nav-link:hover,.nav-link.active{color:var(--gold);background:var(--gold-glow)}
+.nav-actions{display:flex;align-items:center;gap:12px}
+.lang-switcher{display:flex;gap:2px;padding:3px;background:var(--bg-card);border:1px solid var(--border);border-radius:10px}
+.lang-btn{padding:6px 10px;font-size:.75rem;font-weight:600;color:var(--text-dim);border-radius:7px;transition:all var(--t);letter-spacing:.5px}
+.lang-btn:hover{color:var(--text)}
+.lang-btn.active{background:var(--gold);color:#0a0a0a}
+.theme-toggle{width:38px;height:38px;display:grid;place-items:center;background:var(--bg-card);border:1px solid var(--border);border-radius:10px;color:var(--text);font-size:.9rem;transition:all var(--t)}
+.theme-toggle:hover{border-color:var(--gold);color:var(--gold);transform:translateY(-2px)}
+.hamburger{display:none;flex-direction:column;gap:5px;width:38px;height:38px;padding:10px;background:var(--bg-card);border:1px solid var(--border);border-radius:10px;justify-content:center;align-items:center}
+.hamburger span{width:18px;height:2px;background:var(--text);border-radius:2px;transition:all var(--t)}
+.hamburger.active span:nth-child(1){transform:translateY(7px) rotate(45deg)}
+.hamburger.active span:nth-child(2){opacity:0}
+.hamburger.active span:nth-child(3){transform:translateY(-7px) rotate(-45deg)}
+.btn{display:inline-flex;align-items:center;justify-content:center;gap:10px;padding:14px 28px;font-size:.95rem;font-weight:600;border-radius:12px;transition:all var(--t);position:relative;overflow:hidden;white-space:nowrap}
+.btn-primary{background:linear-gradient(135deg,var(--gold),var(--gold-dark));color:#0a0a0a;box-shadow:0 8px 30px var(--gold-glow)}
+.btn-primary:hover{transform:translateY(-3px);box-shadow:0 12px 40px rgba(212,175,55,.3)}
+.btn-ghost{background:transparent;border:1px solid var(--border);color:var(--text)}
+.btn-ghost:hover{border-color:var(--gold);color:var(--gold);transform:translateY(-3px)}
+.btn-outline{background:transparent;border:1px solid var(--border);color:var(--text);width:100%}
+.btn-outline:hover{border-color:var(--gold);color:var(--gold);background:var(--gold-glow)}
+.btn-full{width:100%}
+.btn i{transition:transform var(--t)}
+.btn:hover i{transform:translateX(4px)}
+.hero{position:relative;min-height:100vh;display:flex;align-items:center;padding:140px 0 80px;overflow:hidden}
+.hero-bg{position:absolute;inset:0;z-index:0;pointer-events:none}
+.gradient-orb{position:absolute;border-radius:50%;filter:blur(100px);opacity:.4}
+.orb-1{width:500px;height:500px;background:var(--gold);top:-150px;right:-100px;animation:float 8s ease-in-out infinite}
+.orb-2{width:400px;height:400px;background:#7c5e1a;bottom:-100px;left:-100px;animation:float 10s ease-in-out infinite reverse}
+@keyframes float{0%,100%{transform:translate(0,0)}50%{transform:translate(30px,-30px)}}
+.grid-pattern{position:absolute;inset:0;background-image:linear-gradient(rgba(212,175,55,.04) 1px,transparent 1px),linear-gradient(90deg,rgba(212,175,55,.04) 1px,transparent 1px);background-size:60px 60px;mask-image:radial-gradient(ellipse at center,black 30%,transparent 75%);-webkit-mask-image:radial-gradient(ellipse at center,black 30%,transparent 75%)}
+.hero-content{position:relative;z-index:1;display:grid;grid-template-columns:1.1fr .9fr;gap:60px;align-items:center}
+.hero-text{max-width:620px}
+.badge{display:inline-flex;align-items:center;gap:8px;padding:8px 16px;background:var(--gold-glow);border:1px solid rgba(212,175,55,.3);border-radius:100px;font-size:.82rem;font-weight:500;color:var(--gold);margin-bottom:24px;animation:fadeUp .8s ease both}
+.hero-title{font-family:var(--font-display);font-size:clamp(2.2rem,5vw,4rem);line-height:1.1;font-weight:700;letter-spacing:-.02em;margin-bottom:24px;animation:fadeUp .8s ease .1s both}
+.hero-title em{display:block;font-style:normal;background:linear-gradient(135deg,var(--gold-light),var(--gold),var(--gold-dark));-webkit-background-clip:text;-webkit-text-fill-color:transparent;background-clip:text}
+.hero-desc{font-size:1.08rem;color:var(--text-muted);margin-bottom:36px;max-width:540px;animation:fadeUp .8s ease .2s both}
+.hero-buttons{display:flex;gap:16px;flex-wrap:wrap;margin-bottom:48px;animation:fadeUp .8s ease .3s both}
+.hero-stats{display:flex;gap:40px;padding-top:32px;border-top:1px solid var(--border);animation:fadeUp .8s ease .4s both}
+.stat strong{display:block;font-family:var(--font-display);font-size:1.8rem;font-weight:700;color:var(--gold);line-height:1;margin-bottom:4px}
+.stat span{font-size:.85rem;color:var(--text-dim)}
+@keyframes fadeUp{from{opacity:0;transform:translateY(30px)}to{opacity:1;transform:translateY(0)}}
+.hero-visual{animation:fadeUp .8s ease .3s both}
+.code-card{background:var(--bg-card);border:1px solid var(--border);border-radius:var(--radius);overflow:hidden;box-shadow:0 30px 80px rgba(0,0,0,.4);transform:perspective(1000px) rotateY(-5deg) rotateX(3deg);transition:transform var(--t-slow)}
+.code-card:hover{transform:perspective(1000px) rotateY(0) rotateX(0)}
+.code-header{display:flex;align-items:center;gap:8px;padding:14px 18px;background:var(--bg-alt);border-bottom:1px solid var(--border)}
+.dot{width:12px;height:12px;border-radius:50%}
+.dot.red{background:#ff5f56}.dot.yellow{background:#ffbd2e}.dot.green{background:#27c93f}
+.code-title{margin-left:auto;font-size:.78rem;color:var(--text-dim);font-family:'Courier New',monospace}
+.code-body{padding:24px;font-family:'Courier New',monospace;font-size:.88rem;line-height:1.8;color:var(--text-muted);overflow-x:auto}
+.c-tag{color:#ff7b72}.c-attr{color:#79c0ff}.c-str{color:var(--gold)}
+.section{padding:var(--section-py) 0;position:relative}
+.section-alt{background:var(--bg-alt)}
+.section-head{text-align:center;max-width:640px;margin:0 auto 64px}
+.section-tag{display:inline-block;padding:6px 14px;background:var(--gold-glow);border:1px solid rgba(212,175,55,.25);border-radius:100px;font-size:.78rem;font-weight:600;color:var(--gold);text-transform:uppercase;letter-spacing:1px;margin-bottom:16px}
+.section-title{font-family:var(--font-display);font-size:clamp(1.8rem,3.5vw,2.8rem);font-weight:700;letter-spacing:-.02em;margin-bottom:12px}
+.section-sub{color:var(--text-muted);font-size:1rem}
+.services-grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(300px,1fr));gap:24px}
+.service-card{padding:36px 28px;background:var(--bg-card);border:1px solid var(--border);border-radius:var(--radius);transition:all var(--t);position:relative;overflow:hidden}
+.service-card::before{content:'';position:absolute;top:0;left:0;right:0;height:2px;background:linear-gradient(90deg,transparent,var(--gold),transparent);transform:translateX(-100%);transition:transform var(--t-slow)}
+.service-card:hover::before{transform:translateX(100%)}
+.service-card:hover{border-color:var(--border-hover);transform:translateY(-6px);box-shadow:0 20px 50px rgba(0,0,0,.3)}
+.service-icon{width:56px;height:56px;display:grid;place-items:center;background:var(--gold-glow);border:1px solid rgba(212,175,55,.2);border-radius:14px;font-size:1.4rem;color:var(--gold);margin-bottom:22px;transition:all var(--t)}
+.service-card:hover .service-icon{background:var(--gold);color:#0a0a0a;transform:scale(1.1) rotate(-5deg)}
+.service-card h3{font-size:1.15rem;font-weight:600;margin-bottom:10px}
+.service-card p{color:var(--text-muted);font-size:.92rem;line-height:1.7}
+.portfolio-grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(320px,1fr));gap:24px}
+.portfolio-card{background:var(--bg-card);border:1px solid var(--border);border-radius:var(--radius);overflow:hidden;transition:all var(--t);display:block}
+.portfolio-card:hover{transform:translateY(-6px);border-color:var(--border-hover);box-shadow:0 20px 50px rgba(0,0,0,.3)}
+.portfolio-img{height:200px;display:grid;place-items:center;font-size:3rem;color:rgba(255,255,255,.9);position:relative;overflow:hidden}
+.portfolio-img::after{content:'';position:absolute;inset:0;background:rgba(0,0,0,.2);transition:background var(--t)}
+.portfolio-card:hover .portfolio-img::after{background:rgba(0,0,0,0)}
+.portfolio-info{padding:22px 24px}
+.portfolio-info h3{font-size:1.1rem;font-weight:600;margin-bottom:4px}
+.portfolio-info p{color:var(--text-muted);font-size:.88rem}
+.pricing-grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(290px,1fr));gap:24px;align-items:stretch}
+.pricing-card{padding:40px 32px;background:var(--bg-card);border:1px solid var(--border);border-radius:var(--radius);transition:all var(--t);position:relative;display:flex;flex-direction:column}
+.pricing-card:hover{transform:translateY(-6px);border-color:var(--border-hover)}
+.pricing-card.featured{border-color:var(--gold);background:linear-gradient(180deg,var(--gold-glow),var(--bg-card));box-shadow:0 20px 60px var(--gold-glow);transform:scale(1.03)}
+.pricing-card.featured:hover{transform:scale(1.03) translateY(-6px)}
+.popular{position:absolute;top:-12px;left:50%;transform:translateX(-50%);padding:5px 16px;background:linear-gradient(135deg,var(--gold),var(--gold-dark));color:#0a0a0a;font-size:.72rem;font-weight:700;border-radius:100px;text-transform:uppercase;letter-spacing:1px}
+.pricing-card h3{font-size:1.2rem;font-weight:600;margin-bottom:16px}
+.price{display:flex;align-items:flex-start;gap:4px;margin-bottom:8px}
+.currency{font-size:1.4rem;font-weight:600;color:var(--gold);margin-top:6px}
+.amount{font-family:var(--font-display);font-size:3rem;font-weight:700;line-height:1;color:var(--text)}
+.price-desc{color:var(--text-muted);font-size:.88rem;margin-bottom:28px;padding-bottom:28px;border-bottom:1px solid var(--border)}
+.price-features{display:flex;flex-direction:column;gap:14px;margin-bottom:32px;flex:1}
+.price-features li{display:flex;align-items:center;gap:12px;font-size:.92rem;color:var(--text-muted)}
+.price-features i{color:var(--gold);font-size:.85rem}
+.contact-wrap{display:grid;grid-template-columns:1fr 1.2fr;gap:60px;align-items:start}
+.contact-info{display:flex;flex-direction:column;gap:28px}
+.info-item{display:flex;gap:16px;align-items:flex-start}
+.info-item i{width:44px;height:44px;display:grid;place-items:center;background:var(--gold-glow);border:1px solid rgba(212,175,55,.2);border-radius:12px;color:var(--gold);font-size:1rem;flex-shrink:0}
+.info-item strong{display:block;font-size:.82rem;color:var(--text-dim);text-transform:uppercase;letter-spacing:.5px;margin-bottom:4px}
+.info-item a,.info-item span{color:var(--text);font-size:1rem;transition:color var(--t)}
+.info-item a:hover{color:var(--gold)}
+.socials{display:flex;gap:12px;margin-top:12px}
+.socials a{width:44px;height:44px;display:grid;place-items:center;background:var(--bg-card);border:1px solid var(--border);border-radius:12px;color:var(--text-muted);font-size:1rem;transition:all var(--t)}
+.socials a:hover{background:var(--gold);color:#0a0a0a;border-color:var(--gold);transform:translateY(-4px)}
+.contact-form{display:flex;flex-direction:column;gap:16px}
+.form-row{display:grid;grid-template-columns:1fr 1fr;gap:16px}
+.contact-form input,.contact-form textarea{width:100%;padding:16px 20px;background:var(--bg-card);border:1px solid var(--border);border-radius:var(--radius-sm);color:var(--text);font-family:inherit;font-size:.95rem;transition:all var(--t);resize:vertical}
+.contact-form input::placeholder,.contact-form textarea::placeholder{color:var(--text-dim)}
+.contact-form input:focus,.contact-form textarea:focus{outline:none;border-color:var(--gold);box-shadow:0 0 0 4px var(--gold-glow)}
+.footer{background:var(--bg-alt);border-top:1px solid var(--border);padding-top:64px}
+.footer-content{display:grid;grid-template-columns:2fr 1fr 1fr;gap:48px;padding-bottom:48px}
+.footer-brand p{color:var(--text-muted);font-size:.92rem;margin-top:16px;max-width:320px}
+.footer-links{display:flex;flex-direction:column;gap:12px}
+.footer-links h4{font-size:.85rem;font-weight:600;text-transform:uppercase;letter-spacing:1px;color:var(--text);margin-bottom:8px}
+.footer-links a{color:var(--text-muted);font-size:.92rem;transition:color var(--t)}
+.footer-links a:hover{color:var(--gold)}
+.footer-bottom{padding:24px 0;border-top:1px solid var(--border);text-align:center}
+.footer-bottom p{color:var(--text-dim);font-size:.85rem}
+.scroll-top{position:fixed;bottom:30px;right:30px;width:48px;height:48px;display:grid;place-items:center;background:linear-gradient(135deg,var(--gold),var(--gold-dark));color:#0a0a0a;border-radius:14px;font-size:1rem;box-shadow:0 8px 30px var(--gold-glow);opacity:0;visibility:hidden;transform:translateY(20px);transition:all var(--t);z-index:999}
+.scroll-top.visible{opacity:1;visibility:visible;transform:translateY(0)}
+.scroll-top:hover{transform:translateY(-4px);box-shadow:0 12px 40px rgba(212,175,55,.4)}
+.reveal{opacity:0;transform:translateY(40px);transition:opacity .8s,transform .8s}
+.reveal.visible{opacity:1;transform:translateY(0)}
+@media (max-width:992px){.hero-content{grid-template-columns:1fr;gap:48px}.hero-visual{max-width:500px}.contact-wrap{grid-template-columns:1fr;gap:40px}.footer-content{grid-template-columns:1fr 1fr}.footer-brand{grid-column:1/-1}}
+@media (max-width:768px){:root{--section-py:70px}.hamburger{display:flex}.nav-menu{position:fixed;top:0;right:-100%;width:80%;max-width:320px;height:100vh;flex-direction:column;align-items:flex-start;padding:100px 32px 32px;background:var(--bg-alt);border-left:1px solid var(--border);transition:right var(--t);gap:8px;z-index:999}.nav-menu.active{right:0}.nav-link{width:100%;padding:14px 16px;font-size:1rem}.lang-switcher{display:none}.hero{padding:120px 0 60px}.hero-stats{gap:24px}.stat strong{font-size:1.4rem}.form-row{grid-template-columns:1fr}.pricing-card.featured{transform:scale(1)}.pricing-card.featured:hover{transform:translateY(-6px)}.footer-content{grid-template-columns:1fr;gap:32px}.scroll-top{bottom:20px;right:20px}}
+@media (max-width:480px){.container{padding:0 18px}.hero-buttons{flex-direction:column}.hero-buttons .btn{width:100%}.hero-stats{flex-wrap:wrap}.amount{font-size:2.4rem}}
+::-webkit-scrollbar{width:10px}
+::-webkit-scrollbar-track{background:var(--bg)}
+::-webkit-scrollbar-thumb{background:var(--border);border-radius:5px}
+::-webkit-scrollbar-thumb:hover{background:var(--gold)}
+::selection{background:var(--gold);color:#0a0a0a}
+</style>
+</head>
+<body>
+
+<div class="loader" id="loader"><div class="loader-ring"></div></div>
+
+<nav class="navbar" id="navbar">
+<div class="container nav-container">
+<a href="#home" class="logo"><span class="logo-icon"><i class="fas fa-code"></i></span><span class="logo-text">Web<em>Craft</em></span></a>
+<ul class="nav-menu" id="navMenu">
+<li><a href="#home" class="nav-link" data-uz="Bosh sahifa" data-en="Home" data-ru="Главная">Bosh sahifa</a></li>
+<li><a href="#services" class="nav-link" data-uz="Xizmatlar" data-en="Services" data-ru="Услуги">Xizmatlar</a></li>
+<li><a href="#portfolio" class="nav-link" data-uz="Portfolio" data-en="Portfolio" data-ru="Портфолио">Portfolio</a></li>
+<li><a href="#pricing" class="nav-link" data-uz="Narxlar" data-en="Pricing" data-ru="Цены">Narxlar</a></li>
+<li><a href="#contact" class="nav-link" data-uz="Aloqa" data-en="Contact" data-ru="Контакт">Aloqa</a></li>
+</ul>
+<div class="nav-actions">
+<div class="lang-switcher">
+<button class="lang-btn active" data-lang="uz">UZ</button>
+<button class="lang-btn" data-lang="en">EN</button>
+<button class="lang-btn" data-lang="ru">RU</button>
+</div>
+<button class="theme-toggle" id="themeToggle" aria-label="Rejim"><i class="fas fa-sun"></i></button>
+<button class="hamburger" id="hamburger"><span></span><span></span><span></span></button>
+</div>
+</div>
+</nav>
+
+<section class="hero" id="home">
+<div class="hero-bg"><div class="gradient-orb orb-1"></div><div class="gradient-orb orb-2"></div><div class="grid-pattern"></div></div>
+<div class="container hero-content">
+<div class="hero-text">
+<span class="badge"><i class="fas fa-star"></i><span data-uz="5 yillik tajriba" data-en="5 years experience" data-ru="5 лет опыта">5 yillik tajriba</span></span>
+<h1 class="hero-title"><span data-uz="Biznesingiz uchun" data-en="For your business" data-ru="Для вашего бизнеса">Biznesingiz uchun</span><em data-uz="zamonaviy sayt" data-en="modern website" data-ru="современный сайт">zamonaviy sayt</em></h1>
+<p class="hero-desc" data-uz="Tez, chiroyli va natija beradigan veb-saytlar yaratamiz. Sizning g'oyangizni raqamli haqiqatga aylantiramiz." data-en="We create fast, beautiful and effective websites. We turn your idea into digital reality." data-ru="Мы создаём быстрые, красивые и эффективные сайты.">Tez, chiroyli va natija beradigan veb-saytlar yaratamiz. Sizning g'oyangizni raqamli haqiqatga aylantiramiz.</p>
+<div class="hero-buttons">
+<a href="#contact" class="btn btn-primary"><span data-uz="Loyihani boshlash" data-en="Start project" data-ru="Начать проект">Loyihani boshlash</span><i class="fas fa-arrow-right"></i></a>
+<a href="#portfolio" class="btn btn-ghost"><span data-uz="Ishlarni ko'rish" data-en="View works" data-ru="Смотреть работы">Ishlarni ko'rish</span></a>
+</div>
+<div class="hero-stats">
+<div class="stat"><strong>120+</strong><span data-uz="Loyihalar" data-en="Projects" data-ru="Проектов">Loyihalar</span></div>
+<div class="stat"><strong>85+</strong><span data-uz="Mijozlar" data-en="Clients" data-ru="Клиентов">Mijozlar</span></div>
+<div class="stat"><strong>5.0</strong><span data-uz="Reyting" data-en="Rating" data-ru="Рейтинг">Reyting</span></div>
+</div>
+</div>
+<div class="hero-visual">
+<div class="code-card">
+<div class="code-header"><span class="dot red"></span><span class="dot yellow"></span><span class="dot green"></span><span class="code-title">index.html</span></div>
+<pre class="code-body"><code><span class="c-tag">&lt;section</span> <span class="c-attr">class</span>=<span class="c-str">"hero"</span><span class="c-tag">&gt;</span>
+  <span class="c-tag">&lt;h1&gt;</span>Sizning g'oyangiz<span class="c-tag">&lt;/h1&gt;</span>
+  <span class="c-tag">&lt;p&gt;</span>Biz uni kodga aylantiramiz<span class="c-tag">&lt;/p&gt;</span>
+<span class="c-tag">&lt;/section&gt;</span></code></pre>
+</div>
+</div>
+</div>
+</section>
+
+<section class="section" id="services">
+<div class="container">
+<div class="section-head">
+<span class="section-tag" data-uz="Xizmatlar" data-en="Services" data-ru="Услуги">Xizmatlar</span>
+<h2 class="section-title" data-uz="Nimalar qilamiz" data-en="What we do" data-ru="Что мы делаем">Nimalar qilamiz</h2>
+<p class="section-sub" data-uz="Sizning ehtiyojingizga mos yechimlar" data-en="Solutions tailored to your needs" data-ru="Решения под ваши потребности">Sizning ehtiyojingizga mos yechimlar</p>
+</div>
+<div class="services-grid">
+<div class="service-card reveal"><div class="service-icon"><i class="fas fa-laptop-code"></i></div><h3 data-uz="Veb-sayt yaratish" data-en="Website creation" data-ru="Создание сайтов">Veb-sayt yaratish</h3><p data-uz="Landing page, korporativ sayt, portfolio — har qanday turdagi saytni noldan yaratamiz." data-en="Landing page, corporate site, portfolio — we create any type of website." data-ru="Лендинг, корпоративный сайт, портфолио — создаём любой сайт.">Landing page, korporativ sayt, portfolio — har qanday turdagi saytni noldan yaratamiz.</p></div>
+<div class="service-card reveal"><div class="service-icon"><i class="fas fa-paint-brush"></i></div><h3 data-uz="UI/UX Dizayn" data-en="UI/UX Design" data-ru="UI/UX Дизайн">UI/UX Dizayn</h3><p data-uz="Foydalanuvchi uchun qulay, chiroyli va zamonaviy interfeyslar yaratamiz." data-en="We create convenient, beautiful and modern interfaces." data-ru="Создаём удобные, красивые и современные интерфейсы.">Foydalanuvchi uchun qulay, chiroyli va zamonaviy interfeyslar yaratamiz.</p></div>
+<div class="service-card reveal"><div class="service-icon"><i class="fas fa-mobile-alt"></i></div><h3 data-uz="Responsive" data-en="Responsive" data-ru="Адаптивность">Responsive</h3><p data-uz="Saytingiz telefon, planshet va kompyuterda mukammal ko'rinadi." data-en="Your site looks perfect on phone, tablet and computer." data-ru="Ваш сайт идеально выглядит на всех устройствах.">Saytingiz telefon, planshet va kompyuterda mukammal ko'rinadi.</p></div>
+<div class="service-card reveal"><div class="service-icon"><i class="fas fa-search"></i></div><h3 data-uz="SEO optimizatsiya" data-en="SEO optimization" data-ru="SEO оптимизация">SEO optimizatsiya</h3><p data-uz="Saytingiz Google'da yuqori o'rinlarda chiqishi uchun barcha ishlarni qilamiz." data-en="We do everything for your site to rank high on Google." data-ru="Делаем всё, чтобы ваш сайт был высоко в Google.">Saytingiz Google'da yuqori o'rinlarda chiqishi uchun barcha ishlarni qilamiz.</p></div>
+<div class="service-card reveal"><div class="service-icon"><i class="fas fa-bolt"></i></div><h3 data-uz="Tezlik" data-en="Speed" data-ru="Скорость">Tezlik</h3><p data-uz="Saytlar 1 sekunddan tez yuklanadi. Tezlik = ko'proq mijoz." data-en="Sites load in less than 1 second. Speed = more clients." data-ru="Сайты загружаются менее чем за 1 секунду.">Saytlar 1 sekunddan tez yuklanadi. Tezlik = ko'proq mijoz.</p></div>
+<div class="service-card reveal"><div class="service-icon"><i class="fas fa-headset"></i></div><h3 data-uz="Qo'llab-quvvatlash" data-en="Support" data-ru="Поддержка">Qo'llab-quvvatlash</h3><p data-uz="Sayt topshirilgandan keyin ham 3 oy davomida bepul yordam beramiz." data-en="We provide free support for 3 months after delivery." data-ru="Бесплатная поддержка 3 месяца после сдачи.">Sayt topshirilgandan keyin ham 3 oy davomida bepul yordam beramiz.</p></div>
+</div>
+</div>
+</section>
+
+<section class="section section-alt" id="portfolio">
+<div class="container">
+<div class="section-head">
+<span class="section-tag" data-uz="Portfolio" data-en="Portfolio" data-ru="Портфолио">Portfolio</span>
+<h2 class="section-title" data-uz="Oxirgi loyihalar" data-en="Recent projects" data-ru="Последние проекты">Oxirgi loyihalar</h2>
+<p class="section-sub" data-uz="Bizning ishlarimizdan namunalar" data-en="Samples of our work" data-ru="Образцы наших работ">Bizning ishlarimizdan namunalar</p>
+</div>
+<div class="portfolio-grid">
+<a href="#" class="portfolio-card reveal"><div class="portfolio-img" style="background:linear-gradient(135deg,#667eea,#764ba2)"><i class="fas fa-store"></i></div><div class="portfolio-info"><h3>Fresh Market</h3><p data-uz="Onlayn do'kon" data-en="Online store" data-ru="Интернет-магазин">Onlayn do'kon</p></div></a>
+<a href="#" class="portfolio-card reveal"><div class="portfolio-img" style="background:linear-gradient(135deg,#f093fb,#f5576c)"><i class="fas fa-utensils"></i></div><div class="portfolio-info"><h3>Bella Restaurant</h3><p data-uz="Restoran sayti" data-en="Restaurant site" data-ru="Сайт ресторана">Restoran sayti</p></div></a>
+<a href="#" class="portfolio-card reveal"><div class="portfolio-img" style="background:linear-gradient(135deg,#4facfe,#00f2fe)"><i class="fas fa-graduation-cap"></i></div><div class="portfolio-info"><h3>EduPlatform</h3><p data-uz="Ta'lim platformasi" data-en="Education platform" data-ru="Образовательная платформа">Ta'lim platformasi</p></div></a>
+<a href="#" class="portfolio-card reveal"><div class="portfolio-img" style="background:linear-gradient(135deg,#43e97b,#38f9d7)"><i class="fas fa-dumbbell"></i></div><div class="portfolio-info"><h3>FitLife Gym</h3><p data-uz="Sport zali" data-en="Gym" data-ru="Спортзал">Sport zali</p></div></a>
+<a href="#" class="portfolio-card reveal"><div class="portfolio-img" style="background:linear-gradient(135deg,#fa709a,#fee140)"><i class="fas fa-plane"></i></div><div class="portfolio-info"><h3>TravelUz</h3><p data-uz="Sayohat agentligi" data-en="Travel agency" data-ru="Турагентство">Sayohat agentligi</p></div></a>
+<a href="#" class="portfolio-card reveal"><div class="portfolio-img" style="background:linear-gradient(135deg,#30cfd0,#330867)"><i class="fas fa-chart-line"></i></div><div class="portfolio-info"><h3>FinTrack</h3><p data-uz="Moliyaviy dashboard" data-en="Financial dashboard" data-ru="Финансовый дашборд">Moliyaviy dashboard</p></div></a>
+</div>
+</div>
+</section>
+
+<section class="section" id="pricing">
+<div class="container">
+<div class="section-head">
+<span class="section-tag" data-uz="Narxlar" data-en="Pricing" data-ru="Цены">Narxlar</span>
+<h2 class="section-title" data-uz="Shaffof narxlar" data-en="Transparent pricing" data-ru="Прозрачные цены">Shaffof narxlar</h2>
+<p class="section-sub" data-uz="Yashirin to'lovlar yo'q" data-en="No hidden fees" data-ru="Без скрытых платежей">Yashirin to'lovlar yo'q</p>
+</div>
+<div class="pricing-grid">
+<div class="pricing-card reveal"><h3 data-uz="Start" data-en="Start" data-ru="Старт">Start</h3><div class="price"><span class="currency">$</span><span class="amount">199</span></div><p class="price-desc" data-uz="Kichik biznes uchun" data-en="For small business" data-ru="Для малого бизнеса">Kichik biznes uchun</p><ul class="price-features"><li><i class="fas fa-check"></i> <span data-uz="1 sahifali sayt" data-en="1 page site" data-ru="Сайт из 1 страницы">1 sahifali sayt</span></li><li><i class="fas fa-check"></i> <span data-uz="Responsive dizayn" data-en="Responsive design" data-ru="Адаптивный дизайн">Responsive dizayn</span></li><li><i class="fas fa-check"></i> <span data-uz="Kontakt forma" data-en="Contact form" data-ru="Контактная форма">Kontakt forma</span></li><li><i class="fas fa-check"></i> <span data-uz="1 hafta" data-en="1 week" data-ru="1 неделя">1 hafta</span></li></ul><a href="#contact" class="btn btn-outline" data-uz="Tanlash" data-en="Choose" data-ru="Выбрать">Tanlash</a></div>
+<div class="pricing-card featured reveal"><span class="popular" data-uz="Mashhur" data-en="Popular" data-ru="Популярный">Mashhur</span><h3 data-uz="Biznes" data-en="Business" data-ru="Бизнес">Biznes</h3><div class="price"><span class="currency">$</span><span class="amount">499</span></div><p class="price-desc" data-uz="O'sayotgan kompaniyalar uchun" data-en="For growing companies" data-ru="Для растущих компаний">O'sayotgan kompaniyalar uchun</p><ul class="price-features"><li><i class="fas fa-check"></i> <span data-uz="5 sahifali sayt" data-en="5 page site" data-ru="Сайт из 5 страниц">5 sahifali sayt</span></li><li><i class="fas fa-check"></i> <span data-uz="Custom dizayn" data-en="Custom design" data-ru="Индивидуальный дизайн">Custom dizayn</span></li><li><i class="fas fa-check"></i> <span data-uz="SEO optimizatsiya" data-en="SEO optimization" data-ru="SEO оптимизация">SEO optimizatsiya</span></li><li><i class="fas fa-check"></i> <span data-uz="Admin panel" data-en="Admin panel" data-ru="Админ панель">Admin panel</span></li><li><i class="fas fa-check"></i> <span data-uz="3 hafta" data-en="3 weeks" data-ru="3 недели">3 hafta</span></li></ul><a href="#contact" class="btn btn-primary" data-uz="Tanlash" data-en="Choose" data-ru="Выбрать">Tanlash</a></div>
+<div class="pricing-card reveal"><h3 data-uz="Premium" data-en="Premium" data-ru="Премиум">Premium</h3><div class="price"><span class="currency">$</span><span class="amount">999</span></div><p class="price-desc" data-uz="Katta loyihalar uchun" data-en="For large projects" data-ru="Для крупных проектов">Katta loyihalar uchun</p><ul class="price-features"><li><i class="fas fa-check"></i> <span data-uz="Cheksiz sahifalar" data-en="Unlimited pages" data-ru="Неограниченные страницы">Cheksiz sahifalar</span></li><li><i class="fas fa-check"></i> <span data-uz="E-commerce" data-en="E-commerce" data-ru="Электронная коммерция">E-commerce</span></li><li><i class="fas fa-check"></i> <span data-uz="Ko'p tilli" data-en="Multilingual" data-ru="Многоязычный">Ko'p tilli</span></li><li><i class="fas fa-check"></i> <span data-uz="Analytics" data-en="Analytics" data-ru="Аналитика">Analytics</span></li><li><i class="fas fa-check"></i> <span data-uz="6 hafta" data-en="6 weeks" data-ru="6 недель">6 hafta</span></li></ul><a href="#contact" class="btn btn-outline" data-uz="Tanlash" data-en="Choose" data-ru="Выбрать">Tanlash</a></div>
+</div>
+</div>
+</section>
+
+<section class="section section-alt" id="contact">
+<div class="container">
+<div class="section-head">
+<span class="section-tag" data-uz="Aloqa" data-en="Contact" data-ru="Контакт">Aloqa</span>
+<h2 class="section-title" data-uz="Bog'lanish" data-en="Get in touch" data-ru="Связаться">Bog'lanish</h2>
+<p class="section-sub" data-uz="Savollaringiz bormi? Yozing!" data-en="Have questions? Write to us!" data-ru="Есть вопросы? Напишите нам!">Savollaringiz bormi? Yozing!</p>
+</div>
+<div class="contact-wrap">
+<div class="contact-info">
+<div class="info-item"><i class="fas fa-envelope"></i><div><strong data-uz="Email" data-en="Email" data-ru="Email">Email</strong><a href="mailto:hello@webcraft.uz">hello@webcraft.uz</a></div></div>
+<div class="info-item"><i class="fas fa-phone"></i><div><strong data-uz="Telefon" data-en="Phone" data-ru="Телефон">Telefon</strong><a href="tel:+998901234567">+998 90 123 45 67</a></div></div>
+<div class="info-item"><i class="fas fa-map-marker-alt"></i><div><strong data-uz="Manzil" data-en="Address" data-ru="Адрес">Manzil</strong><span data-uz="Toshkent, O'zbekiston" data-en="Tashkent, Uzbekistan" data-ru="Ташкент, Узбекистан">Toshkent, O'zbekiston</span></div></div>
+<div class="socials"><a href="#"><i class="fab fa-telegram"></i></a><a href="#"><i class="fab fa-instagram"></i></a><a href="#"><i class="fab fa-github"></i></a><a href="#"><i class="fab fa-linkedin"></i></a></div>
+</div>
+<form class="contact-form" id="contactForm">
+<div class="form-row"><input type="text" name="name" placeholder="Ismingiz" required><input type="email" name="email" placeholder="Email" required></div>
+<input type="text" name="subject" placeholder="Mavzu" required>
+<textarea name="message" rows="5" placeholder="Xabaringiz" required></textarea>
+<button type="submit" class="btn btn-primary btn-full"><span data-uz="Yuborish" data-en="Send" data-ru="Отправить">Yuborish</span><i class="fas fa-paper-plane"></i></button>
+</form>
+</div>
+</div>
+</section>
+
+<footer class="footer">
+<div class="container footer-content">
+<div class="footer-brand"><a href="#home" class="logo"><span class="logo-icon"><i class="fas fa-code"></i></span><span class="logo-text">Web<em>Craft</em></span></a><p data-uz="Biznesingizni raqamli dunyoga olib chiqamiz." data-en="We bring your business to the digital world." data-ru="Мы выводим ваш бизнес в цифровой мир.">Biznesingizni raqamli dunyoga olib chiqamiz.</p></div>
+<div class="footer-links"><h4 data-uz="Sahifalar" data-en="Pages" data-ru="Страницы">Sahifalar</h4><a href="#home">Bosh sahifa</a><a href="#services">Xizmatlar</a><a href="#portfolio">Portfolio</a><a href="#contact">Aloqa</a></div>
+<div class="footer-links"><h4 data-uz="Ijtimoiy" data-en="Social" data-ru="Соцсети">Ijtimoiy</h4><a href="#">Telegram</a><a href="#">Instagram</a><a href="#">GitHub</a><a href="#">LinkedIn</a></div>
+</div>
+<div class="footer-bottom"><p>© 2025 WebCraft Studio. <span data-uz="Barcha huquqlar himoyalangan." data-en="All rights reserved." data-ru="Все права защищены.">Barcha huquqlar himoyalangan.</span></p></div>
+</footer>
+
+<button class="scroll-top" id="scrollTop"><i class="fas fa-arrow-up"></i></button>
+
+<script>
+document.addEventListener('DOMContentLoaded',()=>{
+const loader=document.getElementById('loader');
+window.addEventListener('load',()=>setTimeout(()=>loader.classList.add('hidden'),500));
+setTimeout(()=>loader.classList.add('hidden'),2500);
+
+const themeToggle=document.getElementById('themeToggle');
+const themeIcon=themeToggle.querySelector('i');
+const html=document.documentElement;
+const savedTheme=localStorage.getItem('theme')||'dark';
+html.setAttribute('data-theme',savedTheme);
+updateThemeIcon(savedTheme);
+themeToggle.addEventListener('click',()=>{
+const c=html.getAttribute('data-theme');
+const n=c==='dark'?'light':'dark';
+html.setAttribute('data-theme',n);
+localStorage.setItem('theme',n);
+updateThemeIcon(n);
+});
+function updateThemeIcon(t){themeIcon.className=t==='dark'?'fas fa-sun':'fas fa-moon'}
+
+const langButtons=document.querySelectorAll('.lang-btn');
+let currentLang=localStorage.getItem('lang')||'uz';
+setLanguage(currentLang);
+langButtons.forEach(btn=>{
+btn.addEventListener('click',()=>{
+setLanguage(btn.dataset.lang);
+localStorage.setItem('lang',btn.dataset.lang);
+});
+});
+function setLanguage(lang){
+currentLang=lang;
+langButtons.forEach(b=>b.classList.toggle('active',b.dataset.lang===lang));
+document.querySelectorAll('[data-uz]').forEach(el=>{
+const t=el.dataset[lang];
+if(t)el.textContent=t;
+});
+document.documentElement.lang=lang;
+}
+
+const navbar=document.getElementById('navbar');
+const scrollTopBtn=document.getElementById('scrollTop');
+window.addEventListener('scroll',()=>{
+const y=window.scrollY;
+navbar.classList.toggle('scrolled',y>50);
+scrollTopBtn.classList.toggle('visible',y>400);
+updateActiveLink();
+});
+scrollTopBtn.addEventListener('click',()=>window.scrollTo({top:0,behavior:'smooth'}));
+
+const hamburger=document.getElementById('hamburger');
+const navMenu=document.getElementById('navMenu');
+hamburger.addEventListener('click',()=>{
+hamburger.classList.toggle('active');
+navMenu.classList.toggle('active');
+document.body.style.overflow=navMenu.classList.contains('active')?'hidden':'';
+});
+document.querySelectorAll('.nav-link').forEach(link=>{
+link.addEventListener('click',()=>{
+hamburger.classList.remove('active');
+navMenu.classList.remove('active');
+document.body.style.overflow='';
+});
+});
+
+const sections=document.querySelectorAll('section[id]');
+const navLinks=document.querySelectorAll('.nav-link');
+function updateActiveLink(){
+const p=window.scrollY+150;
+sections.forEach(s=>{
+const t=s.offsetTop,h=s.offsetHeight,id=s.getAttribute('id');
+if(p>=t&&p<t+h){
+navLinks.forEach(l=>l.classList.toggle('active',l.getAttribute('href')==='#'+id));
+}
+});
+}
+
+const revealObserver=new IntersectionObserver((entries)=>{
+entries.forEach((e,i)=>{
+if(e.isIntersecting){
+setTimeout(()=>e.target.classList.add('visible'),i*80);
+revealObserver.unobserve(e.target);
+}
+});
+},{threshold:.1,rootMargin:'0px 0px -50px 0px'});
+document.querySelectorAll('.reveal').forEach(el=>revealObserver.observe(el));
+
+const contactForm=document.getElementById('contactForm');
+contactForm.addEventListener('submit',async e=>{
+e.preventDefault();
+const btn=contactForm.querySelector('button[type="submit"]');
+const orig=btn.innerHTML;
+btn.innerHTML='<i class="fas fa-spinner fa-spin"></i>';
+btn.disabled=true;
+await new Promise(r=>setTimeout(r,1500));
+showMessage('success',{uz:'Xabaringiz yuborildi! Tez orada javob beramiz.',en:'Message sent! We will reply soon.',ru:'Сообщение отправлено! Мы скоро ответим.'}[currentLang]);
+contactForm.reset();
+btn.innerHTML=orig;
+btn.disabled=false;
+});
+function showMessage(type,text){
+const old=document.querySelector('.form-message');
+if(old)old.remove();
+const m=document.createElement('div');
+m.className='form-message';
+m.textContent=text;
+m.style.cssText='padding:14px 18px;border-radius:10px;font-size:.9rem;margin-top:8px;text-align:center;background:rgba(39,201,63,.15);border:1px solid rgba(39,201,63,.4);color:#27c93f;animation:fadeUp .4s ease';
+contactForm.appendChild(m);
+setTimeout(()=>m.remove(),4000);
+}
+
+document.querySelectorAll('a[href^="#"]').forEach(a=>{
+a.addEventListener('click',function(e){
+const t=document.querySelector(this.getAttribute('href'));
+if(t){
+e.preventDefault();
+const off=80;
+const top=t.getBoundingClientRect().top+window.scrollY-off;
+window.scrollTo({top,behavior:'smooth'});
+}
+});
+});
+
+const orbs=document.querySelectorAll('.gradient-orb');
+window.addEventListener('scroll',()=>{
+const y=window.scrollY;
+orbs.forEach((o,i)=>{
+o.style.transform='translateY('+y*(i===0?.3:.2)+'px)';
+});
+});
+});
+</script>
+</body>
+</html>
