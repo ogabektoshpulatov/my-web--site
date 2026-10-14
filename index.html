@@ -1,0 +1,407 @@
+<!DOCTYPE html>
+<html lang="uz" data-theme="dark">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>WebCraft Studio — Zamonaviy veb-saytlar yaratamiz</title>
+    <meta name="description" content="WebCraft Studio — biznesingiz uchun zamonaviy, tez va professional veb-saytlar yaratamiz. Portfolio, biznes saytlar, onlayn do'konlar.">
+    <meta name="keywords" content="veb-sayt yasash, web development, veb-studiya, sayt yaratish, Toshkent, O'zbekiston">
+    <meta name="author" content="WebCraft Studio">
+    
+    <!-- Open Graph -->
+    <meta property="og:title" content="WebCraft Studio — Zamonaviy veb-saytlar">
+    <meta property="og:description" content="Biznesingiz uchun professional veb-saytlar yaratamiz">
+    <meta property="og:type" content="website">
+    
+    <!-- Google Fonts -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&family=Playfair+Display:wght@600;700;800&display=swap" rel="stylesheet">
+    
+    <!-- Font Awesome -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
+    
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+
+    <!-- LOADER -->
+    <div class="loader" id="loader">
+        <div class="loader-ring"></div>
+    </div>
+
+    <!-- NAVIGATION -->
+    <nav class="navbar" id="navbar">
+        <div class="container nav-container">
+            <a href="#home" class="logo">
+                <span class="logo-icon"><i class="fas fa-code"></i></span>
+                <span class="logo-text">Web<em>Craft</em></span>
+            </a>
+            
+            <ul class="nav-menu" id="navMenu">
+                <li><a href="#home" class="nav-link" data-uz="Bosh sahifa" data-en="Home" data-ru="Главная">Bosh sahifa</a></li>
+                <li><a href="#services" class="nav-link" data-uz="Xizmatlar" data-en="Services" data-ru="Услуги">Xizmatlar</a></li>
+                <li><a href="#portfolio" class="nav-link" data-uz="Portfolio" data-en="Portfolio" data-ru="Портфолио">Portfolio</a></li>
+                <li><a href="#pricing" class="nav-link" data-uz="Narxlar" data-en="Pricing" data-ru="Цены">Narxlar</a></li>
+                <li><a href="#contact" class="nav-link" data-uz="Aloqa" data-en="Contact" data-ru="Контакт">Aloqa</a></li>
+            </ul>
+
+            <div class="nav-actions">
+                <div class="lang-switcher">
+                    <button class="lang-btn active" data-lang="uz">UZ</button>
+                    <button class="lang-btn" data-lang="en">EN</button>
+                    <button class="lang-btn" data-lang="ru">RU</button>
+                </div>
+                <button class="theme-toggle" id="themeToggle" aria-label="Rejimni almashtirish">
+                    <i class="fas fa-sun"></i>
+                </button>
+                <button class="hamburger" id="hamburger" aria-label="Menyu">
+                    <span></span><span></span><span></span>
+                </button>
+            </div>
+        </div>
+    </nav>
+
+    <!-- HERO -->
+    <section class="hero" id="home">
+        <div class="hero-bg">
+            <div class="gradient-orb orb-1"></div>
+            <div class="gradient-orb orb-2"></div>
+            <div class="grid-pattern"></div>
+        </div>
+        
+        <div class="container hero-content">
+            <div class="hero-text">
+                <span class="badge">
+                    <i class="fas fa-star"></i>
+                    <span data-uz="5 yillik tajriba" data-en="5 years experience" data-ru="5 лет опыта">5 yillik tajriba</span>
+                </span>
+                <h1 class="hero-title">
+                    <span data-uz="Biznesingiz uchun" data-en="For your business" data-ru="Для вашего бизнеса">Biznesingiz uchun</span>
+                    <em data-uz="zamonaviy sayt" data-en="modern website" data-ru="современный сайт">zamonaviy sayt</em>
+                </h1>
+                <p class="hero-desc" data-uz="Tez, chiroyli va natija beradigan veb-saytlar yaratamiz. Sizning g'oyangizni raqamli haqiqatga aylantiramiz." data-en="We create fast, beautiful and effective websites. We turn your idea into digital reality." data-ru="Мы создаём быстрые, красивые и эффективные сайты. Превращаем вашу идею в цифровую реальность.">
+                    Tez, chiroyli va natija beradigan veb-saytlar yaratamiz. Sizning g'oyangizni raqamli haqiqatga aylantiramiz.
+                </p>
+                <div class="hero-buttons">
+                    <a href="#contact" class="btn btn-primary">
+                        <span data-uz="Loyihani boshlash" data-en="Start project" data-ru="Начать проект">Loyihani boshlash</span>
+                        <i class="fas fa-arrow-right"></i>
+                    </a>
+                    <a href="#portfolio" class="btn btn-ghost">
+                        <span data-uz="Ishlarni ko'rish" data-en="View works" data-ru="Смотреть работы">Ishlarni ko'rish</span>
+                    </a>
+                </div>
+                <div class="hero-stats">
+                    <div class="stat">
+                        <strong>120+</strong>
+                        <span data-uz="Loyihalar" data-en="Projects" data-ru="Проектов">Loyihalar</span>
+                    </div>
+                    <div class="stat">
+                        <strong>85+</strong>
+                        <span data-uz="Mijozlar" data-en="Clients" data-ru="Клиентов">Mijozlar</span>
+                    </div>
+                    <div class="stat">
+                        <strong>5.0</strong>
+                        <span data-uz="Reyting" data-en="Rating" data-ru="Рейтинг">Reyting</span>
+                    </div>
+                </div>
+            </div>
+            
+            <div class="hero-visual">
+                <div class="code-card">
+                    <div class="code-header">
+                        <span class="dot red"></span>
+                        <span class="dot yellow"></span>
+                        <span class="dot green"></span>
+                        <span class="code-title">index.html</span>
+                    </div>
+                    <pre class="code-body"><code><span class="c-tag">&lt;section</span> <span class="c-attr">class</span>=<span class="c-str">"hero"</span><span class="c-tag">&gt;</span>
+  <span class="c-tag">&lt;h1&gt;</span>Sizning g'oyangiz<span class="c-tag">&lt;/h1&gt;</span>
+  <span class="c-tag">&lt;p&gt;</span>Biz uni kodga aylantiramiz<span class="c-tag">&lt;/p&gt;</span>
+<span class="c-tag">&lt;/section&gt;</span></code></pre>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- SERVICES -->
+    <section class="section" id="services">
+        <div class="container">
+            <div class="section-head">
+                <span class="section-tag" data-uz="Xizmatlar" data-en="Services" data-ru="Услуги">Xizmatlar</span>
+                <h2 class="section-title" data-uz="Nimalar qilamiz" data-en="What we do" data-ru="Что мы делаем">Nimalar qilamiz</h2>
+                <p class="section-sub" data-uz="Sizning ehtiyojingizga mos yechimlar" data-en="Solutions tailored to your needs" data-ru="Решения под ваши потребности">Sizning ehtiyojingizga mos yechimlar</p>
+            </div>
+            
+            <div class="services-grid">
+                <div class="service-card reveal">
+                    <div class="service-icon"><i class="fas fa-laptop-code"></i></div>
+                    <h3 data-uz="Veb-sayt yaratish" data-en="Website creation" data-ru="Создание сайтов">Veb-sayt yaratish</h3>
+                    <p data-uz="Landing page, korporativ sayt, portfolio — har qanday turdagi saytni noldan yaratamiz." data-en="Landing page, corporate site, portfolio — we create any type of website from scratch." data-ru="Лендинг, корпоративный сайт, портфолио — создаём любой тип сайта с нуля.">Landing page, korporativ sayt, portfolio — har qanday turdagi saytni noldan yaratamiz.</p>
+                </div>
+                
+                <div class="service-card reveal">
+                    <div class="service-icon"><i class="fas fa-paint-brush"></i></div>
+                    <h3 data-uz="UI/UX Dizayn" data-en="UI/UX Design" data-ru="UI/UX Дизайн">UI/UX Dizayn</h3>
+                    <p data-uz="Foydalanuvchi uchun qulay, chiroyli va zamonaviy interfeyslar yaratamiz." data-en="We create convenient, beautiful and modern interfaces for users." data-ru="Создаём удобные, красивые и современные интерфейсы для пользователей.">Foydalanuvchi uchun qulay, chiroyli va zamonaviy interfeyslar yaratamiz.</p>
+                </div>
+                
+                <div class="service-card reveal">
+                    <div class="service-icon"><i class="fas fa-mobile-alt"></i></div>
+                    <h3 data-uz="Responsive" data-en="Responsive" data-ru="Адаптивность">Responsive</h3>
+                    <p data-uz="Saytingiz telefon, planshet va kompyuterda mukammal ko'rinadi." data-en="Your site looks perfect on phone, tablet and computer." data-ru="Ваш сайт идеально выглядит на телефоне, планшете и компьютере.">Saytingiz telefon, planshet va kompyuterda mukammal ko'rinadi.</p>
+                </div>
+                
+                <div class="service-card reveal">
+                    <div class="service-icon"><i class="fas fa-search"></i></div>
+                    <h3 data-uz="SEO optimizatsiya" data-en="SEO optimization" data-ru="SEO оптимизация">SEO optimizatsiya</h3>
+                    <p data-uz="Saytingiz Google'da yuqori o'rinlarda chiqishi uchun barcha ishlarni qilamiz." data-en="We do everything for your site to rank high on Google." data-ru="Делаем всё, чтобы ваш сайт был высоко в Google.">Saytingiz Google'da yuqori o'rinlarda chiqishi uchun barcha ishlarni qilamiz.</p>
+                </div>
+                
+                <div class="service-card reveal">
+                    <div class="service-icon"><i class="fas fa-bolt"></i></div>
+                    <h3 data-uz="Tezlik" data-en="Speed" data-ru="Скорость">Tezlik</h3>
+                    <p data-uz="Saytlar 1 sekunddan tez yuklanadi. Tezlik = ko'proq mijoz." data-en="Sites load in less than 1 second. Speed = more clients." data-ru="Сайты загружаются менее чем за 1 секунду. Скорость = больше клиентов.">Saytlar 1 sekunddan tez yuklanadi. Tezlik = ko'proq mijoz.</p>
+                </div>
+                
+                <div class="service-card reveal">
+                    <div class="service-icon"><i class="fas fa-headset"></i></div>
+                    <h3 data-uz="Qo'llab-quvvatlash" data-en="Support" data-ru="Поддержка">Qo'llab-quvvatlash</h3>
+                    <p data-uz="Sayt topshirilgandan keyin ham 3 oy davomida bepul yordam beramiz." data-en="We provide free support for 3 months after delivery." data-ru="Мы бесплатно поддерживаем 3 месяца после сдачи.">Sayt topshirilgandan keyin ham 3 oy davomida bepul yordam beramiz.</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- PORTFOLIO -->
+    <section class="section section-alt" id="portfolio">
+        <div class="container">
+            <div class="section-head">
+                <span class="section-tag" data-uz="Portfolio" data-en="Portfolio" data-ru="Портфолио">Portfolio</span>
+                <h2 class="section-title" data-uz="Oxirgi loyihalar" data-en="Recent projects" data-ru="Последние проекты">Oxirgi loyihalar</h2>
+                <p class="section-sub" data-uz="Bizning ishlarimizdan namunalar" data-en="Samples of our work" data-ru="Образцы наших работ">Bizning ishlarimizdan namunalar</p>
+            </div>
+            
+            <div class="portfolio-grid">
+                <a href="#" class="portfolio-card reveal">
+                    <div class="portfolio-img" style="background: linear-gradient(135deg, #667eea, #764ba2);">
+                        <i class="fas fa-store"></i>
+                    </div>
+                    <div class="portfolio-info">
+                        <h3>Fresh Market</h3>
+                        <p data-uz="Onlayn do'kon" data-en="Online store" data-ru="Интернет-магазин">Onlayn do'kon</p>
+                    </div>
+                </a>
+                
+                <a href="#" class="portfolio-card reveal">
+                    <div class="portfolio-img" style="background: linear-gradient(135deg, #f093fb, #f5576c);">
+                        <i class="fas fa-utensils"></i>
+                    </div>
+                    <div class="portfolio-info">
+                        <h3>Bella Restaurant</h3>
+                        <p data-uz="Restoran sayti" data-en="Restaurant site" data-ru="Сайт ресторана">Restoran sayti</p>
+                    </div>
+                </a>
+                
+                <a href="#" class="portfolio-card reveal">
+                    <div class="portfolio-img" style="background: linear-gradient(135deg, #4facfe, #00f2fe);">
+                        <i class="fas fa-graduation-cap"></i>
+                    </div>
+                    <div class="portfolio-info">
+                        <h3>EduPlatform</h3>
+                        <p data-uz="Ta'lim platformasi" data-en="Education platform" data-ru="Образовательная платформа">Ta'lim platformasi</p>
+                    </div>
+                </a>
+                
+                <a href="#" class="portfolio-card reveal">
+                    <div class="portfolio-img" style="background: linear-gradient(135deg, #43e97b, #38f9d7);">
+                        <i class="fas fa-dumbbell"></i>
+                    </div>
+                    <div class="portfolio-info">
+                        <h3>FitLife Gym</h3>
+                        <p data-uz="Sport zali" data-en="Gym" data-ru="Спортзал">Sport zali</p>
+                    </div>
+                </a>
+                
+                <a href="#" class="portfolio-card reveal">
+                    <div class="portfolio-img" style="background: linear-gradient(135deg, #fa709a, #fee140);">
+                        <i class="fas fa-plane"></i>
+                    </div>
+                    <div class="portfolio-info">
+                        <h3>TravelUz</h3>
+                        <p data-uz="Sayohat agentligi" data-en="Travel agency" data-ru="Турагентство">Sayohat agentligi</p>
+                    </div>
+                </a>
+                
+                <a href="#" class="portfolio-card reveal">
+                    <div class="portfolio-img" style="background: linear-gradient(135deg, #30cfd0, #330867);">
+                        <i class="fas fa-chart-line"></i>
+                    </div>
+                    <div class="portfolio-info">
+                        <h3>FinTrack</h3>
+                        <p data-uz="Moliyaviy dashboard" data-en="Financial dashboard" data-ru="Финансовый дашборд">Moliyaviy dashboard</p>
+                    </div>
+                </a>
+            </div>
+        </div>
+    </section>
+
+    <!-- PRICING -->
+    <section class="section" id="pricing">
+        <div class="container">
+            <div class="section-head">
+                <span class="section-tag" data-uz="Narxlar" data-en="Pricing" data-ru="Цены">Narxlar</span>
+                <h2 class="section-title" data-uz="Shaffof narxlar" data-en="Transparent pricing" data-ru="Прозрачные цены">Shaffof narxlar</h2>
+                <p class="section-sub" data-uz="Yashirin to'lovlar yo'q" data-en="No hidden fees" data-ru="Без скрытых платежей">Yashirin to'lovlar yo'q</p>
+            </div>
+            
+            <div class="pricing-grid">
+                <div class="pricing-card reveal">
+                    <h3 data-uz="Start" data-en="Start" data-ru="Старт">Start</h3>
+                    <div class="price">
+                        <span class="currency">$</span>
+                        <span class="amount">199</span>
+                    </div>
+                    <p class="price-desc" data-uz="Kichik biznes uchun" data-en="For small business" data-ru="Для малого бизнеса">Kichik biznes uchun</p>
+                    <ul class="price-features">
+                        <li><i class="fas fa-check"></i> <span data-uz="1 sahifali sayt" data-en="1 page site" data-ru="Сайт из 1 страницы">1 sahifali sayt</span></li>
+                        <li><i class="fas fa-check"></i> <span data-uz="Responsive dizayn" data-en="Responsive design" data-ru="Адаптивный дизайн">Responsive dizayn</span></li>
+                        <li><i class="fas fa-check"></i> <span data-uz="Kontakt forma" data-en="Contact form" data-ru="Контактная форма">Kontakt forma</span></li>
+                        <li><i class="fas fa-check"></i> <span data-uz="1 hafta" data-en="1 week" data-ru="1 неделя">1 hafta</span></li>
+                    </ul>
+                    <a href="#contact" class="btn btn-outline" data-uz="Tanlash" data-en="Choose" data-ru="Выбрать">Tanlash</a>
+                </div>
+                
+                <div class="pricing-card featured reveal">
+                    <span class="popular" data-uz="Mashhur" data-en="Popular" data-ru="Популярный">Mashhur</span>
+                    <h3 data-uz="Biznes" data-en="Business" data-ru="Бизнес">Biznes</h3>
+                    <div class="price">
+                        <span class="currency">$</span>
+                        <span class="amount">499</span>
+                    </div>
+                    <p class="price-desc" data-uz="O'sayotgan kompaniyalar uchun" data-en="For growing companies" data-ru="Для растущих компаний">O'sayotgan kompaniyalar uchun</p>
+                    <ul class="price-features">
+                        <li><i class="fas fa-check"></i> <span data-uz="5 sahifali sayt" data-en="5 page site" data-ru="Сайт из 5 страниц">5 sahifali sayt</span></li>
+                        <li><i class="fas fa-check"></i> <span data-uz="Custom dizayn" data-en="Custom design" data-ru="Индивидуальный дизайн">Custom dizayn</span></li>
+                        <li><i class="fas fa-check"></i> <span data-uz="SEO optimizatsiya" data-en="SEO optimization" data-ru="SEO оптимизация">SEO optimizatsiya</span></li>
+                        <li><i class="fas fa-check"></i> <span data-uz="Admin panel" data-en="Admin panel" data-ru="Админ панель">Admin panel</span></li>
+                        <li><i class="fas fa-check"></i> <span data-uz="3 hafta" data-en="3 weeks" data-ru="3 недели">3 hafta</span></li>
+                    </ul>
+                    <a href="#contact" class="btn btn-primary" data-uz="Tanlash" data-en="Choose" data-ru="Выбрать">Tanlash</a>
+                </div>
+                
+                <div class="pricing-card reveal">
+                    <h3 data-uz="Premium" data-en="Premium" data-ru="Премиум">Premium</h3>
+                    <div class="price">
+                        <span class="currency">$</span>
+                        <span class="amount">999</span>
+                    </div>
+                    <p class="price-desc" data-uz="Katta loyihalar uchun" data-en="For large projects" data-ru="Для крупных проектов">Katta loyihalar uchun</p>
+                    <ul class="price-features">
+                        <li><i class="fas fa-check"></i> <span data-uz="Cheksiz sahifalar" data-en="Unlimited pages" data-ru="Неограниченные страницы">Cheksiz sahifalar</span></li>
+                        <li><i class="fas fa-check"></i> <span data-uz="E-commerce" data-en="E-commerce" data-ru="Электронная коммерция">E-commerce</span></li>
+                        <li><i class="fas fa-check"></i> <span data-uz="Ko'p tilli" data-en="Multilingual" data-ru="Многоязычный">Ko'p tilli</span></li>
+                        <li><i class="fas fa-check"></i> <span data-uz="Analytics" data-en="Analytics" data-ru="Аналитика">Analytics</span></li>
+                        <li><i class="fas fa-check"></i> <span data-uz="6 hafta" data-en="6 weeks" data-ru="6 недель">6 hafta</span></li>
+                    </ul>
+                    <a href="#contact" class="btn btn-outline" data-uz="Tanlash" data-en="Choose" data-ru="Выбрать">Tanlash</a>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- CONTACT -->
+    <section class="section section-alt" id="contact">
+        <div class="container">
+            <div class="section-head">
+                <span class="section-tag" data-uz="Aloqa" data-en="Contact" data-ru="Контакт">Aloqa</span>
+                <h2 class="section-title" data-uz="Bog'lanish" data-en="Get in touch" data-ru="Связаться">Bog'lanish</h2>
+                <p class="section-sub" data-uz="Savollaringiz bormi? Yozing!" data-en="Have questions? Write to us!" data-ru="Есть вопросы? Напишите нам!">Savollaringiz bormi? Yozing!</p>
+            </div>
+            
+            <div class="contact-wrap">
+                <div class="contact-info">
+                    <div class="info-item">
+                        <i class="fas fa-envelope"></i>
+                        <div>
+                            <strong data-uz="Email" data-en="Email" data-ru="Email">Email</strong>
+                            <a href="mailto:hello@webcraft.uz">hello@webcraft.uz</a>
+                        </div>
+                    </div>
+                    <div class="info-item">
+                        <i class="fas fa-phone"></i>
+                        <div>
+                            <strong data-uz="Telefon" data-en="Phone" data-ru="Телефон">Telefon</strong>
+                            <a href="tel:+998901234567">+998 90 123 45 67</a>
+                        </div>
+                    </div>
+                    <div class="info-item">
+                        <i class="fas fa-map-marker-alt"></i>
+                        <div>
+                            <strong data-uz="Manzil" data-en="Address" data-ru="Адрес">Manzil</strong>
+                            <span data-uz="Toshkent, O'zbekiston" data-en="Tashkent, Uzbekistan" data-ru="Ташкент, Узбекистан">Toshkent, O'zbekiston</span>
+                        </div>
+                    </div>
+                    <div class="socials">
+                        <a href="#" aria-label="Telegram"><i class="fab fa-telegram"></i></a>
+                        <a href="#" aria-label="Instagram"><i class="fab fa-instagram"></i></a>
+                        <a href="#" aria-label="GitHub"><i class="fab fa-github"></i></a>
+                        <a href="#" aria-label="LinkedIn"><i class="fab fa-linkedin"></i></a>
+                    </div>
+                </div>
+                
+                <form class="contact-form" id="contactForm">
+                    <div class="form-row">
+                        <input type="text" name="name" placeholder="Ismingiz" data-ph-uz="Ismingiz" data-ph-en="Your name" data-ph-ru="Ваше имя" required>
+                        <input type="email" name="email" placeholder="Email" data-ph-uz="Email" data-ph-en="Email" data-ph-ru="Email" required>
+                    </div>
+                    <input type="text" name="subject" placeholder="Mavzu" data-ph-uz="Mavzu" data-ph-en="Subject" data-ph-ru="Тема" required>
+                    <textarea name="message" rows="5" placeholder="Xabaringiz" data-ph-uz="Xabaringiz" data-ph-en="Your message" data-ph-ru="Ваше сообщение" required></textarea>
+                    <button type="submit" class="btn btn-primary btn-full">
+                        <span data-uz="Yuborish" data-en="Send" data-ru="Отправить">Yuborish</span>
+                        <i class="fas fa-paper-plane"></i>
+                    </button>
+                </form>
+            </div>
+        </div>
+    </section>
+
+    <!-- FOOTER -->
+    <footer class="footer">
+        <div class="container footer-content">
+            <div class="footer-brand">
+                <a href="#home" class="logo">
+                    <span class="logo-icon"><i class="fas fa-code"></i></span>
+                    <span class="logo-text">Web<em>Craft</em></span>
+                </a>
+                <p data-uz="Biznesingizni raqamli dunyoga olib chiqamiz." data-en="We bring your business to the digital world." data-ru="Мы выводим ваш бизнес в цифровой мир.">Biznesingizni raqamli dunyoga olib chiqamiz.</p>
+            </div>
+            <div class="footer-links">
+                <h4 data-uz="Sahifalar" data-en="Pages" data-ru="Страницы">Sahifalar</h4>
+                <a href="#home" data-uz="Bosh sahifa" data-en="Home" data-ru="Главная">Bosh sahifa</a>
+                <a href="#services" data-uz="Xizmatlar" data-en="Services" data-ru="Услуги">Xizmatlar</a>
+                <a href="#portfolio" data-uz="Portfolio" data-en="Portfolio" data-ru="Портфолио">Portfolio</a>
+                <a href="#contact" data-uz="Aloqa" data-en="Contact" data-ru="Контакт">Aloqa</a>
+            </div>
+            <div class="footer-links">
+                <h4 data-uz="Ijtimoiy" data-en="Social" data-ru="Соцсети">Ijtimoiy</h4>
+                <a href="#">Telegram</a>
+                <a href="#">Instagram</a>
+                <a href="#">GitHub</a>
+                <a href="#">LinkedIn</a>
+            </div>
+        </div>
+        <div class="footer-bottom">
+            <p>© 2025 WebCraft Studio. <span data-uz="Barcha huquqlar himoyalangan." data-en="All rights reserved." data-ru="Все права защищены.">Barcha huquqlar himoyalangan.</span></p>
+        </div>
+    </footer>
+
+    <!-- SCROLL TOP -->
+    <button class="scroll-top" id="scrollTop" aria-label="Yuqoriga">
+        <i class="fas fa-arrow-up"></i>
+    </button>
+
+    <script src="script.js"></script>
+</body>
+</html>
